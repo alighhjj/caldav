@@ -284,7 +284,24 @@ docker run -d -p 8056:8056 --name calendar-merger calendar-merger
 
 #### 使用 Docker Compose
 
-项目已包含预配置的 `docker-compose.yml` 文件，支持完整的数据卷映射：
+项目提供两种 Docker Compose 部署方式：
+
+**方式一：从项目根目录部署（推荐）**
+
+在项目根目录运行：
+```bash
+docker-compose up -d
+```
+
+**方式二：从 docker 子目录部署**
+
+在 docker 子目录运行：
+```bash
+cd docker
+docker-compose up -d
+```
+
+两种方式都支持完整的数据卷映射：
 
 ```yaml
 version: '3.8'
@@ -306,11 +323,6 @@ services:
       - PYTHONUNBUFFERED=1
     restart: unless-stopped
     command: python main.py
-```
-
-运行:
-```bash
-docker-compose up -d
 ```
 
 ## 故障排除
@@ -363,22 +375,29 @@ curl http://localhost:8000/api/events > events_backup.json
 ## 项目结构
 
 ```
-calendar_merger/
-├── main.py                 # 主程序入口
-├── config.py              # 配置文件
-├── requirements.txt       # 依赖列表
-├── storage/              # 数据存储模块
-│   ├── base.py           # 存储基类
-│   ├── sqlite_storage.py # SQLite 实现
-│   └── json_storage.py   # JSON 实现
-├── merger/               # 日历合并模块
-│   └── calendar_merger.py
-├── server/               # Web 服务器模块
-│   └── web_server.py
-└── data/                 # 数据目录（自动创建）
-    ├── calendars.db      # 数据库文件
-    ├── backups/          # 备份文件
-    └── application.log   # 应用日志
+caldav/
+├── main.py                    # 主程序入口
+├── config.py                  # 项目配置文件
+├── cal_setting.json           # CalDAV服务器配置文件（已忽略）
+├── cal_setting.json.example   # CalDAV配置文件示例
+├── requirements.txt           # 依赖列表
+├── .gitignore                 # Git忽略配置
+├── docker/                    # Docker部署相关文件
+│   ├── Dockerfile             # Docker镜像构建文件
+│   ├── docker-compose.yml     # Docker Compose配置文件
+│   ├── DOCKER-DEPLOYMENT.md   # Docker部署详细指南
+│   └── docker-readme.md       # Docker简明使用说明
+├── storage/                   # 数据存储模块
+│   ├── base.py                # 存储基类
+│   ├── sqlite_storage.py      # SQLite 实现
+│   └── json_storage.py        # JSON 实现
+├── merger/                    # 日历合并模块
+│   └── calendar_merger.py     # 日历合并器核心逻辑
+├── server/                    # Web 服务器模块
+│   └── web_server.py          # Flask Web服务器实现
+└── data/                      # 数据目录（自动创建）
+    ├── calendars.db           # SQLite数据库文件
+    └── backups/               # 备份文件目录
 ```
 
 ## 开发指南

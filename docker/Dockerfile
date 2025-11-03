@@ -10,7 +10,7 @@ COPY requirements.txt .
 # 安装依赖
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 复制应用代码
+# 复制应用代码（从项目根目录）
 COPY . .
 
 # 创建数据和日志目录

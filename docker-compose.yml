@@ -2,21 +2,18 @@ version: '3.8'
 
 services:
   caldav-merger:
-    build:
-      context: ..  # 项目根目录作为构建上下文
-      dockerfile: ./docker/Dockerfile
+    build: .
     container_name: caldav-merger
     ports:
       - "8056:8056"
     volumes:
       # 将配置文件映射到宿主机，便于修改
-      - ../cal_setting.json:/app/cal_setting.json:ro
+      - ./cal_setting.json:/app/cal_setting.json:ro
       # 将日志目录映射到宿主机
-      - ../calendar_data:/app/calendar_data
+      - ./calendar_data:/app/calendar_data
       # 将数据库和备份目录映射到宿主机
-      - ../data:/app/data
+      - ./data:/app/data
     environment:
       - PYTHONUNBUFFERED=1
     restart: unless-stopped
-    # 为开发环境设置文件变化监听
     command: python main.py

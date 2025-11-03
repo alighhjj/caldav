@@ -7,9 +7,10 @@ caldav/ - CalDAV日历合并服务项目
 ├── README.md                  # 项目说明文档，包含功能介绍和使用指南
 ├── requirements.txt           # Python依赖包列表
 ├── .gitignore                 # Git忽略文件配置，保护敏感信息
+├── docker-compose.yml         # 项目根目录的Docker Compose配置文件
 ├── docker/                    # Docker部署相关文件目录
 │   ├── Dockerfile             # Docker镜像构建文件
-│   ├── docker-compose.yml     # Docker Compose配置文件，支持数据卷映射
+│   ├── docker-compose.yml     # Docker Compose配置文件（从docker目录启动）
 │   ├── DOCKER-DEPLOYMENT.md   # Docker部署详细指南
 │   └── docker-readme.md       # Docker简明使用说明
 ├── storage/                   # 数据存储模块
