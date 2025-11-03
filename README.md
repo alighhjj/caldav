@@ -284,41 +284,33 @@ docker run -d -p 8056:8056 --name calendar-merger calendar-merger
 
 #### 使用 Docker Compose
 
-项目提供两种 Docker Compose 部署方式：
+在 docker 子目录运行 Docker Compose 部署：
 
-**方式一：从项目根目录部署（推荐）**
-
-在项目根目录运行：
-```bash
-docker-compose up -d
-```
-
-**方式二：从 docker 子目录部署**
-
-在 docker 子目录运行：
 ```bash
 cd docker
 docker-compose up -d
 ```
 
-两种方式都支持完整的数据卷映射：
+该配置支持完整的数据卷映射：
 
 ```yaml
 version: '3.8'
 
 services:
   caldav-merger:
-    build: .
+    build:
+      context: ..  # 项目根目录作为构建上下文
+      dockerfile: ./docker/Dockerfile
     container_name: caldav-merger
     ports:
       - "8056:8056"
     volumes:
       # 将配置文件映射到宿主机，便于修改
-      - ./cal_setting.json:/app/cal_setting.json:ro
+      - ../cal_setting.json:/app/cal_setting.json:ro
       # 将日志目录映射到宿主机
-      - ./calendar_data:/app/calendar_data
+      - ../calendar_data:/app/calendar_data
       # 将数据库和备份目录映射到宿主机
-      - ./data:/app/data
+      - ../data:/app/data
     environment:
       - PYTHONUNBUFFERED=1
     restart: unless-stopped

@@ -4,6 +4,10 @@ FROM python:3.12-slim
 # 设置工作目录
 WORKDIR /app
 
+# 配置 pip 使用清华源
+RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple/ && \
+    pip config set global.trusted-host pypi.tuna.tsinghua.edu.cn
+
 # 复制依赖文件
 COPY requirements.txt .
 
