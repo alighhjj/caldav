@@ -1,0 +1,59 @@
+# Python generated files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+.qwen/
+
+
+# Log files
+*.log
+calendar_data/
+*.out
+
+# Data files
+data/
+*.db
+*.sqlite
+
+# Configuration files containing sensitive data
+cal_setting.json
+*.config.json
+
+# Backup and temp files
+*.bak
+*.tmp
+*~
+.DS_Store
+Thumbs.db
+
+# Environment specific
+.env.local
+.env.production
+.env.development
+
+# Docker
+.dockerenv
+!Dockerfile
+!docker-compose.yml
+!docker/
+
+# Examples
+!cal_setting.json.example
+!config.py.example
+node_modules/

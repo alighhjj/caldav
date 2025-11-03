@@ -1,0 +1,30 @@
+caldav/ - CalDAV日历合并服务项目
+├── main.py                    # 主程序入口，日历服务主类和启动逻辑
+├── config.py                  # 项目配置文件，包含服务器、端口、同步间隔等配置
+├── cal_setting.json           # CalDAV服务器配置文件，定义日历源连接信息（已忽略）
+├── cal_setting.json.example   # CalDAV配置文件示例，供用户参考
+├── caldav_client.py           # CalDAV客户端测试工具，用于验证服务器连接
+├── README.md                  # 项目说明文档，包含功能介绍和使用指南
+├── requirements.txt           # Python依赖包列表
+├── .gitignore                 # Git忽略文件配置，保护敏感信息
+├── docker/                    # Docker部署相关文件目录
+│   ├── Dockerfile             # Docker镜像构建文件
+│   ├── docker-compose.yml     # Docker Compose配置文件，支持数据卷映射
+│   ├── DOCKER-DEPLOYMENT.md   # Docker部署详细指南
+│   └── docker-readme.md       # Docker简明使用说明
+├── storage/                   # 数据存储模块
+│   ├── base.py                # 存储基础接口定义
+│   ├── sqlite_storage.py      # SQLite数据库存储实现
+│   └── json_storage.py        # JSON文件存储实现
+├── merger/                    # 日历合并模块
+│   └── calendar_merger.py     # 日历合并器核心逻辑，负责获取和合并日历事件
+├── server/                    # Web服务器模块
+│   └── web_server.py          # Flask Web服务器，提供API和订阅页面
+├── data/                      # 数据目录
+│   ├── calendars.db           # SQLite数据库文件，存储合并后的日历事件
+│   └── backups/               # 数据备份目录
+├── calendar_data/             # 日志目录
+│   └── application.log        # 应用程序运行日志文件
+├── .qwen/                     # 项目AI助手配置目录
+│   └── PROJECT_SUMMARY.md     # 项目总结文件
+└── __pycache__/               # Python编译缓存目录

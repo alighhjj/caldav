@@ -1,0 +1,14 @@
+[
+  {
+    "name": "示例日历1",
+    "url": "https://your-caldav-server.com",
+    "username": "your-username",
+    "password": "your-password"
+  },
+  {
+    "name": "示例日历2", 
+    "url": "https://another-caldav-server.com",
+    "username": "another-username",
+    "password": "another-password"
+  }
+]
